@@ -1236,11 +1236,7 @@ int xen_hvm_init(ram_addr_t *below_4g_mem_size, ram_addr_t *above_4g_mem_size,
         return -1;
     }
 
-    rc = xen_create_ioreq_server(xen_xc, xen_domid, &state->ioservid);
-    if (rc < 0) {
-        perror("xen: ioreq server create");
-        return -1;
-    }
+    xen_create_ioreq_server(xen_xc, xen_domid, &state->ioservid);
 
     state->exit.notify = xen_exit_notifier;
     qemu_add_exit_notifier(&state->exit);
